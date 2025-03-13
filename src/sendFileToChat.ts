@@ -36,7 +36,7 @@ async function getMessageAction(messageName: string) {
     return messageAction.id;
 }
 
-async function sendTwitchMessage(message: string) {
+async function sendMessage(message: string) {
     try {
         // Don't send if it's the same as the last message
         if (message === lastMessageSent) {
@@ -68,7 +68,7 @@ async function watchFile(fileToRead: string) {
             console.log(`File ${filename} changed, reading new contents...`);
             try {
                 const contents = await fs.readFile(fileToRead, 'utf8');
-                await sendTwitchMessage(contents);
+                await sendMessage(contents);
             } catch (err) {
                 console.error('Error reading updated file:', err);
             }
@@ -87,7 +87,7 @@ async function run() {
         console.log('Reading initial contents...');
         const initialContent = await fs.readFile(fileToRead, 'utf8');
         console.log('Sending initial message:', initialContent);
-        await sendTwitchMessage(initialContent);
+        await sendMessage(initialContent);
 
         // Then start watching for changes
         await watchFile(fileToRead);
