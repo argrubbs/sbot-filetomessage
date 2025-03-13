@@ -1,9 +1,13 @@
 import { StreamerbotClient } from '@streamerbot/client';
 import { promises as fs } from 'fs';
 
+
+// Variables for StreamerBot and File
 const streamerBotHost = '127.0.0.1'
 const streamerBotPort = 8080
 const streamerBotEndpoint = '/'
+const actionName = 'TunaMessage';
+const fileToRead = 'tuna.txt';
 
 const client = new StreamerbotClient({
     host: streamerBotHost,
@@ -41,7 +45,7 @@ async function sendTwitchMessage(message: string) {
         }
 
         // For Twitch chat, we send the message directly in the action object
-        const response = await client.doAction(await getMessageAction('TunaMessage'), {
+        const response = await client.doAction(await getMessageAction(actionName), {
             message: message  // This is the direct message to send, not in args
         });
 
@@ -73,7 +77,7 @@ async function watchFile(fileToRead: string) {
 }
 
 async function run() {
-    const fileToRead = process.argv[2] || 'message.txt';
+    // const fileToRead = process.argv[2] || 'message.txt';
 
     try {
         console.log('Connecting to Streamerbot...');
