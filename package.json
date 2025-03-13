@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@streamerbot/client": "^1.9.5",
+    "ws": "^8.18.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "bufferutil"
+    ]
+  },
+  "scripts": {
+    "start": "ts-node src/sendFileToChat.ts"
+  }
+}
