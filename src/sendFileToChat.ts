@@ -1,5 +1,5 @@
 import { StreamerbotClient } from '@streamerbot/client';
-import { promises as fs } from 'fs';
+import { promises as fs } from 'node:fs';
 
 
 // Variables for StreamerBot and File
@@ -7,7 +7,7 @@ const streamerBotHost = '127.0.0.1'
 const streamerBotPort = 8080
 const streamerBotEndpoint = '/'
 const actionName = 'TunaMessage';
-const fileToRead = 'tuna.txt';
+const fileToRead = './tuna.txt';
 
 const client = new StreamerbotClient({
     host: streamerBotHost,
