@@ -1,10 +1,20 @@
 #!/bin/bash
 
+function reload_config() 
+  if [[ "$SHELL" == *bash ]]; then
+    source $HOME/.bashrc
+  elif [[ "$SHELL" == *zsh ]]; then
+    source $HOME/.zshrc
+  else
+    echo "Use bash or zsh like a normal person"
+  fi
+
 # Install Deno runtime
-if command -v &> /dev/null 2>&1; then
+if deno -v &> /dev/null 2>&1; then
   echo "Deno is already installed"
 else
   curl -fsSL https://deno.land/install.sh | sh
+  reload_config
 fi
 
 # Check if deno is installed
